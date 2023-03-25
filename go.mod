@@ -1,3 +1,5 @@
-module go-chat/m
+module go-chat
 
 go 1.20
+
+require github.com/gorilla/mux v1.8.0
