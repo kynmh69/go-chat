@@ -10,6 +10,10 @@ import (
 	"github.com/gorilla/mux"
 )
 
+func printURL(r *http.Request) {
+	log.Println(r.Method, r.URL.String())
+}
+
 func main() {
 	router := mux.NewRouter()
 
@@ -18,12 +22,11 @@ func main() {
 	}
 
 	router.HandleFunc("/chat", func(w http.ResponseWriter, r *http.Request) {
+		printURL(r)
 		switch r.Method {
 		case "GET":
-			log.Println("GET")
 			controller.GetChatRoom(&chatRoom, w)
 		case "POST":
-			log.Println("POST")
 			controller.PostChatRoom(&chatRoom, r, w)
 		}
 	})
